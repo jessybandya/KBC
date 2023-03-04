@@ -1,0 +1,49 @@
+*{
+  margin: 0;
+}
+.ant-spin-dot-item {
+  background-color: #fff;
+}
+/* bigger screen */
+@media (min-width: 700px){
+   .Maindiv{
+     display: flex;
+   }
+   .commentSection{
+    overflow-y: auto;
+    margin-left: 5px;
+   }
+}
+
+/* smaller screen */
+@media (max-width: 700px){
+  .Maindiv{
+    display: block;
+  }
+}
+
+
+.modal-90w{
+  max-width: none !important;
+}
+
+.imageSlider{
+  background-image: linear-gradient(to right, rgba(109, 179, 242, .6), rgba(109, 179, 242, .6))
+}
+
+
+/* bigger screen */
+@media (min-width: 700px){
+  .CarouselHome{
+    margin-top: -75px;
+  }
+}
+
+/* smaller screen */
+@media (max-width: 700px){
+  .CarouselHome{
+
+  }
+}
+
+
