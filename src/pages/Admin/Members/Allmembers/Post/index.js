@@ -8,6 +8,8 @@ import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { db } from '../../../../../firebase';
+import { toast } from 'react-toastify';
 
 function Post({ userId, firstName, lastName, email, phone, profilePhoto, timestamp, username, category}) {
   var d = timestamp;
@@ -15,6 +17,16 @@ function Post({ userId, firstName, lastName, email, phone, profilePhoto, timesta
   
   //NB: use + before variable name
   var date = new Date(+d);
+ const deleteUser = () =>{
+    if(window.confirm(`Are you sure you want to delete this users:-> ${firstName} ${lastName}?`)){
+        db.collection("users").doc(userId).delete().then(function() {
+        }).catch(function(error) {
+            toast.error("Error removing order: ", error);
+        }); 
+        toast.success(`${firstName} ${lastName} has been deleted successfully!`)   
+      }
+}
+
   return (
     <TableRow hover role="checkbox" tabIndex={-1}>
         <TableCell > 
@@ -39,7 +51,7 @@ function Post({ userId, firstName, lastName, email, phone, profilePhoto, timesta
         {date.toDateString()}                 
         </TableCell>
         <TableCell align='right'>
-         <DeleteForeverIcon style={{color:'#43a047'}} fontSize='medium'/>                  
+         <DeleteForeverIcon style={{color:'#43a047',cursor:'pointer'}} onClick={deleteUser} fontSize='medium'/>                  
         </TableCell>
   </TableRow>
   )
